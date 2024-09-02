@@ -6,8 +6,6 @@ import de.tidalharvest.game.GameHolder;
 import de.tidalharvest.game.model.crop.Crop;
 import de.tidalharvest.game.model.board.Field;
 import de.tidalharvest.game.model.Game;
-import de.tidalharvest.game.model.worker.FarmerTasks;
-import de.tidalharvest.game.model.worker.task.farmer.FarmerTask;
 import de.tidalharvest.game.model.worker.task.TaskQueue;
 import de.tidalharvest.game.model.worker.task.farmer.HarvestTask;
 import lombok.RequiredArgsConstructor;

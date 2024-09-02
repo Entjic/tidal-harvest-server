@@ -1,6 +1,5 @@
 package de.tidalharvest.game.model.worker.task;
 
-import de.tidalharvest.game.model.Game;
 import de.tidalharvest.game.model.worker.Worker;
 import org.springframework.stereotype.Component;
 

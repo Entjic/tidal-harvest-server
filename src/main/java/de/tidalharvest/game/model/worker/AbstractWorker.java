@@ -88,4 +88,9 @@ public abstract class AbstractWorker implements Worker {
         this.currentY(first.y());
         this.path.removeFirst();
     }
+
+    @Override
+    public boolean hasPath() {
+        return !(this.path == null || this.path.isEmpty());
+    }
 }

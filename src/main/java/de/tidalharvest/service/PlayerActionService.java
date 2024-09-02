@@ -64,8 +64,5 @@ public class PlayerActionService {
         return neighbours;
     }
 
-    private void buy(Game game, BuildingType type) {
-
-    }
 
 }

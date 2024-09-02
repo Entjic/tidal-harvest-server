@@ -1,6 +1,5 @@
 package de.tidalharvest.game.model.worker.task.reward;
 
-import de.tidalharvest.game.GameCropHolder;
 import de.tidalharvest.game.GameHolder;
 import de.tidalharvest.game.model.worker.task.TaskQueue;
 import de.tidalharvest.game.model.worker.task.farmer.HarvestTask;

@@ -22,12 +22,13 @@ public class TickMachine {
     private final GrowCropsStep growCropsStep;
     private final WorkerStep workerStep;
     private final DryFieldsStep dryFieldsStep;
+    private final TimeStep timeStep;
 
 
     @Scheduled(fixedRate = 1, timeUnit = TimeUnit.SECONDS)
     public void tick() {
         for (Game game : gameHolder.getAll()) {
-            if(game.getPaused()){
+            if (game.getPaused()) {
                 System.out.println("not ticking paused game" + game.getId());
                 continue;
             }
@@ -38,22 +39,24 @@ public class TickMachine {
         }
     }
 
-    private void tick(Game game){
+    private void tick(Game game) {
         Iterator<Step> steps = steps();
 
         while (steps.hasNext()) {
             Step step = steps.next();
+            step.log(game);
             step.modify(game);
         }
 
     }
 
-    private Iterator<Step> steps(){
+    private Iterator<Step> steps() {
         List<Step> steps = new ArrayList<>();
         steps.add(floodStep);
         steps.add(growCropsStep);
         steps.add(workerStep);
         steps.add(dryFieldsStep);
+        steps.add(timeStep);
 
         steps.sort(Comparator.comparingInt(Step::order));
 

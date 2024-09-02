@@ -51,7 +51,9 @@ public class PlayerActionController {
 
         String crop = placeActionDto.getCrop();
 
-        return new GameStateDto();
+        playerActionService.placeDefaultBuilding(game, buildingType, placeActionDto.getX(), placeActionDto.getY());
+
+        return map(game.getBoard());
     }
 
     private GameStateDto map(Board board) {

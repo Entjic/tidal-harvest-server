@@ -1,6 +1,5 @@
 package de.tidalharvest.controller;
 
-import de.tidalharvest.dto.GameStateDto;
 import de.tidalharvest.game.model.Game;
 import de.tidalharvest.game.GameHolder;
 import lombok.RequiredArgsConstructor;
