@@ -5,6 +5,7 @@ import de.tidalharvest.dto.PlaceActionDto;
 import de.tidalharvest.dto.PlaceCropTypedActionDto;
 import de.tidalharvest.dto.TileDto;
 import de.tidalharvest.game.GameHolder;
+import de.tidalharvest.game.Mapper;
 import de.tidalharvest.game.model.Game;
 import de.tidalharvest.game.model.board.Board;
 import de.tidalharvest.game.model.board.Field;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 @RequiredArgsConstructor
 public class PlayerActionController {
 
+    private final Mapper mapper;
     private final GameHolder gameHolder;
     private final PlayerActionService playerActionService;
 
@@ -36,7 +38,7 @@ public class PlayerActionController {
         playerActionService.placeDefaultBuilding(game, buildingType,
                 placeActionDto.getX(), placeActionDto.getY());
 
-        return map(game.getBoard());
+        return mapper.map(game.getBoard());
     }
 
     @MessageMapping("place/crop/")
@@ -53,23 +55,10 @@ public class PlayerActionController {
 
         playerActionService.placeDefaultBuilding(game, buildingType, placeActionDto.getX(), placeActionDto.getY());
 
-        return map(game.getBoard());
+        return mapper.map(game.getBoard());
     }
 
-    private GameStateDto map(Board board) {
-        GameStateDto gameStateDto = new GameStateDto();
-        gameStateDto.setX(board.getXSize());
-        gameStateDto.setY(board.getYSize());
 
-        for (Field[] row : board.getMatrix()) {
-            for (Field field : row) {
-                BuildingType type = field.getBuilding() != null ? field.getBuilding().type() : null;
-                TileDto tileDto = new TileDto(field.getX(), field.getY(), field.getFieldType(), type);
-                gameStateDto.getTiles().add(tileDto);
-            }
-        }
-        return gameStateDto;
-    }
 
 
 }

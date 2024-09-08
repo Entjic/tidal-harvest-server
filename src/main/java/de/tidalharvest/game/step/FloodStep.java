@@ -13,7 +13,7 @@ public class FloodStep implements Step {
     @Override
     public void modify(Game game) {
         if (ticksSinceFlood++ % 10 == 0) {
-            ticksSinceFlood = 0;
+            ticksSinceFlood = 1;
             System.out.println("triggering flood");
             flood(game);
         }

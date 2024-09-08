@@ -3,6 +3,7 @@ package de.tidalharvest.game;
 import de.tidalharvest.game.model.Game;
 import de.tidalharvest.game.step.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,9 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 public class TickMachine {
 
+    private final SimpMessagingTemplate messagingTemplate;
+    private final Mapper mapper;
+
     private final GameHolder gameHolder;
 
     private final FloodStep floodStep;
@@ -25,10 +29,10 @@ public class TickMachine {
     private final TimeStep timeStep;
 
 
-    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.SECONDS)
+    @Scheduled(fixedRate = 30, timeUnit = TimeUnit.SECONDS)
     public void tick() {
         for (Game game : gameHolder.getAll()) {
-            if (game.getPaused()) {
+            if (game.isPaused()) {
                 System.out.println("not ticking paused game" + game.getId());
                 continue;
             }
@@ -36,6 +40,7 @@ public class TickMachine {
             tick(game);
             long after = System.currentTimeMillis();
             System.out.println("Ticking game " + game.getId() + " took " + (after - before) + " milliseconds, if > 1000ms game is lagging");
+            messagingTemplate.convertAndSend("/topic/game/", mapper.map(game.getBoard()));
         }
     }
 

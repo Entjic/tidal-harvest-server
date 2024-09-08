@@ -17,6 +17,7 @@ public class GameAdminController {
     @MessageMapping("create/")
     @SendTo("/topic/game/created/")
     public Game create() {
+        System.out.println("Creating game");
         return gameHolder.getDefaultGame();
     }
 

@@ -12,9 +12,16 @@ import java.util.UUID;
 @Setter
 public class Game {
 
-    private final Long id = UUID.randomUUID().getMostSignificantBits();
+    private final long id = UUID.randomUUID().getMostSignificantBits();
 
-    private Integer timeSinceStart;
+    private int timeSinceStart;
     private Board board;
-    private Boolean paused;
+    private boolean paused;
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                '}';
+    }
 }
