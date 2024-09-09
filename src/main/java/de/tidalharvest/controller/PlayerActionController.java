@@ -34,7 +34,12 @@ public class PlayerActionController {
         Game game = gameHolder.getDefaultGame();
 
         Integer id = placeActionDto.getBuildingType();
+        System.out.println("id " + id);
         BuildingType buildingType = BuildingType.fromId(id);
+        System.out.println("buildingType: " + buildingType);
+        System.out.println("x = " + placeActionDto.getX());
+        System.out.println("y = " + placeActionDto.getY());
+
         playerActionService.placeDefaultBuilding(game, buildingType,
                 placeActionDto.getX(), placeActionDto.getY());
 
@@ -57,8 +62,6 @@ public class PlayerActionController {
 
         return mapper.map(game.getBoard());
     }
-
-
 
 
 }

@@ -10,6 +10,7 @@ public enum BuildingType {
             return null;
         }
         for (BuildingType buildingType : BuildingType.values()) {
+            System.out.println("Building type: " + buildingType.name() + " has ordinal: " + buildingType.ordinal());
             if (buildingType.ordinal() == id) {
                 return buildingType;
             }

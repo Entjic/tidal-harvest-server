@@ -16,7 +16,7 @@ public class BoardGenerator {
 
         for (int i = 0; i < board.getXSize(); i++) {
             for (int j = 0; j < board.getYSize(); j++) {
-                board.getMatrix()[i][j] = generate(x, y, rockParam);
+                board.getMatrix()[i][j] = generate(i, j, rockParam);
             }
         }
 
@@ -36,7 +36,7 @@ public class BoardGenerator {
         }
 
         field.setFieldType(FieldType.FARMLAND);
-
+        System.out.println(field.getX() + " " + field.getY());
         return field;
     }
 
